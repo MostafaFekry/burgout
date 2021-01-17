@@ -1,0 +1,50 @@
+<header id="header" class="header-transparent bg-color-secondary header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyChangeLogo': false, 'stickyStartAt': 1, 'stickyHeaderContainerHeight': 70}">
+	<div class="header-body border-0 header-border-bottom bg-color-secondary box-shadow-none">
+		<div class="header-container container">
+			<div class="header-row py-0">
+				<div class="header-column flex-row w-auto">
+					<div class="header-logo m-0">
+						<a href="{{ url_prefix }}{{ home_page or "/" }}">
+							{{ brand_html or """<img alt='Burgout' width='120' height='120' src='/assets/burgout/img/burgout120.png'  class='img-fluid'>""" or (frappe.get_hooks("brand_html") or [_("Home")])[0] }}
+						</a>
+					</div>
+				</div>
+				<div class="header-column  w-md-100pct pl-lg-5">
+					<div class="header-nav w-100 p-0">
+						<div class="header-nav header-nav-line header-nav-bottom-line header-nav-bottom-line-effect-1 justify-content-start w-100 header-nav-light-text">
+							<div class="header-nav-main header-nav-main-arrows header-nav-main-effect-2 header-nav-main-sub-effect-1 w-100">
+								{% include "templates/includes/navbar/navbar_items.html" %}
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="header-column flex-row w-auto  h-100">
+					<div class="header-nav-features pl-0 ml-1">
+						<ul class="header-extra-info d-flex h-100 align-items-center">
+							<li class="align-items-center h-100 py-md-4  pr-md-4 ">
+								<div class="header-extra-info-text h-100 py-2">
+									<div class="feature-box feature-box-style-2 align-items-center">
+										<div class="feature-box-icon">
+											<a class="text-color-light text-color-hover-primary text-decoration-none" href="tel:8001234567"><i class="icons icon-phone text-7 p-relative text-color-light"></i></a>
+										</div>
+										<div class="feature-box-info pl-1  d-none d-md-block">
+											<label class=" text-color-primary d-inline-flex">CALL US NOW</label>
+											<strong><a class="text-color-light text-color-hover-primary" href="tel:8001234567">8001234567</a></strong>
+										</div>
+									</div>
+								</div>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+				<div class="header-column flex-row w-auto">
+					{% include "templates/includes/navbar/navbar_shopping_cart.html" %}
+					<button class="btn header-btn-collapse-nav ml-3" data-toggle="collapse" data-target=".header-nav-main nav">
+						<i class="fas fa-bars"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>

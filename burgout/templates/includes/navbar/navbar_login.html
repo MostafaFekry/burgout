@@ -1,0 +1,23 @@
+<!-- post login tools -->
+{% if not only_static %}
+
+	{% if not hide_login %}
+	<li class="dropdown ml-lg-auto no-line-effect">
+		<a href="/login" class="dropdown-item btn-login-area"><i class="icons icon-user text-2"></i>&nbsp;{{ _("Login") }}</a>
+	</li>
+	{% endif %}
+
+	{% if frappe.session.user != 'Guest' %}
+	<li class="nav-item dropdown ml-lg-auto no-line-effect logged-in" id="website-post-login" data-label="website-post-login" style="display: none">
+		<a href="#" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icons icon-user text-2"></i>&nbsp;<span class="full-name"></span></a>
+		<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+			{%- for child in post_login -%}
+			{%- if child.url -%}
+			<li><a href="{{ child.url | abs_url }}" {{ child.target or '' }} rel="nofollow" class="dropdown-item"> <i class="fas fa-user-lock"></i>&nbsp;{{ _(child.label) }}</a></li>
+			{%- endif -%}
+			{%- endfor -%}
+			<li><a href="/desk" class="dropdown-item switch-to-desk hidden"> <i class="fas fa-tasks"></i>&nbsp;{{ _('Switch To Desk') }}</a></li>
+		</ul>
+	</li>
+	{% endif %}
+{% endif %}

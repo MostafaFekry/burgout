@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include burgout *.css
+recursive-include burgout *.csv
+recursive-include burgout *.html
+recursive-include burgout *.ico
+recursive-include burgout *.js
+recursive-include burgout *.json
+recursive-include burgout *.md
+recursive-include burgout *.png
+recursive-include burgout *.py
+recursive-include burgout *.svg
+recursive-include burgout *.txt
+recursive-exclude burgout *.pyc

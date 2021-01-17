@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!-- Built on Burgout. https://burgouteg.com/ -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+	<meta name="generator" content="frappe">
+  <meta name="theme-color" content="#00003B">
+
+	{% block meta_block %}
+		{% include "templates/includes/meta_block.html" %}
+	{% endblock %}
+
+	<title>{% block title %} {{ title | striptags }} {% endblock %}</title>
+
+	{% block favicon %}
+  <!-- Favicon -->
+  <link rel="shortcut icon" href='{{ (favicon or "/assets/burgout/img/burgouticon.png") | abs_url }}' type="image/x-icon">
+	<link rel="apple-touch-icon" href='{{ (favicon or "/assets/burgout/img/burgouticon.png") | abs_url }}'>
+	{% endblock %}
+
+	<link rel="canonical" href="{{ canonical }}">
+
+	{%- block head -%}
+		{% if head_html is defined -%}
+		{{ head_html or "" }}
+		{%- endif %}
+
+		{% if theme.theme_url %}
+		<link type="text/css" rel="stylesheet" href="{{ theme.theme_url }}">
+		{% else %}
+		<link type="text/css" rel="stylesheet" href="/assets/css/frappe-web-b4.css">
+
+		{%- for link in web_include_css %}
+		<link type="text/css" rel="stylesheet" href="{{ link|abs_url }}">
+		{%- endfor -%}
+		{% endif %}
+	{%- endblock -%}
+
+	{%- block head_include %}
+		{{ head_include or "" }}
+	{% endblock -%}
+
+	{%- block style %}{%- endblock -%}
+
+  <!-- Vendor CSS -->
+  <link rel="stylesheet" href="/assets/burgout/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/animate/animate.compat.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/simple-line-icons/css/simple-line-icons.min.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/owl.carousel/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/owl.carousel/assets/owl.theme.default.min.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/magnific-popup/magnific-popup.min.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/bootstrap-star-rating/css/star-rating.min.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.css">
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="/assets/burgout/css/theme.css">
+  <link rel="stylesheet" href="/assets/burgout/css/theme-elements.css">
+  <link rel="stylesheet" href="/assets/burgout/css/theme-blog.css">
+  <link rel="stylesheet" href="/assets/burgout/css/theme-shop.css">
+
+
+  <!-- Demo CSS -->
+  <link rel="stylesheet" href="/assets/burgout/css/burgout-custom.css">
+  <!-- Skin CSS -->
+  <link rel="stylesheet" href="/assets/burgout/css/skins/skin-burgout.css">
+
+  <!-- Head Libs -->
+  <script src="/assets/burgout/vendor/modernizr/modernizr.min.js"></script>
+
+	<script>
+		window.frappe = {};
+		frappe.ready_events = [];
+		frappe.ready = function(fn) {
+			frappe.ready_events.push(fn);
+		}
+		window.dev_server = {{ dev_server }};
+		window.socketio_port = {{ (frappe.socketio_port or 'null') }};
+    </script>
+</head>
+<body frappe-session-status="{{ 'logged-in' if frappe.session.user != 'Guest' else 'logged-out'}}" data-path="{{ path | e }}" {%- if template and template.endswith('.md') %} frappe-content-type="markdown" {% endif -%} data-target="#header" data-spy="scroll" data-offset="100">
+  <div class="body">
+	{%- block navbar -%}
+  {% if allow_top_bar_notice and top_bar_notice %}
+  <div class="notice-top-bar bg-primary">
+		<button class="hamburguer-btn hamburguer-btn-light notice-top-bar-close m-0 active" data-set-active="false">
+			<span class="close">
+				<span></span>
+				<span></span>
+			</span>
+		</button>
+		<div class="container">
+			<div class="row justify-content-center py-2">
+				<div class="col-9 col-md-12 text-center">
+					  {{ top_bar_notice or "" }}
+				</div>
+			</div>
+		</div>
+	</div>
+  {% endif %}
+		{% include "templates/includes/navbar/navbar.html" %}
+	{%- endblock -%}
+  <div role="main" class="main">
+	{% block content %}
+		{{ content }}
+	{% endblock %}
+  {% block topfooter %}{% endblock %}
+  {% block subscribenewsletter %}
+  	{% include "templates/includes/footer/footer_newsletter.html" %}
+  {% endblock %}
+  </div>
+	{%- block footer -%}
+		{% include "templates/includes/footer/footer.html" %}
+	{%- endblock -%}
+</div>
+	{% block base_scripts %}
+	<!-- js should be loaded in body! -->
+	<script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/js/frappe-web.min.js"></script>
+	<script type="text/javascript" src="/assets/js/bootstrap-4-web.min.js"></script>
+  <!-- Vendor -->
+  <script src="/assets/burgout/vendor/jquery.appear/jquery.appear.min.js"></script>
+  <script src="/assets/burgout/vendor/jquery.easing/jquery.easing.min.js"></script>
+  <script src="/assets/burgout/vendor/jquery.cookie/jquery.cookie.min.js"></script>
+  <script src="/assets/burgout/vendor/popper/umd/popper.min.js"></script>
+  <script src="/assets/burgout/vendor/common/common.min.js"></script>
+  <script src="/assets/burgout/vendor/jquery.validation/jquery.validate.min.js"></script>
+  <script src="/assets/burgout/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+  <script src="/assets/burgout/vendor/jquery.gmap/jquery.gmap.min.js"></script>
+  <script src="/assets/burgout/vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
+  <script src="/assets/burgout/vendor/isotope/jquery.isotope.min.js"></script>
+  <script src="/assets/burgout/vendor/owl.carousel/owl.carousel.min.js"></script>
+  <script src="/assets/burgout/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+  <script src="/assets/burgout/vendor/vide/jquery.vide.min.js"></script>
+  <script src="/assets/burgout/vendor/vivus/vivus.min.js"></script>
+  <script src="/assets/burgout/vendor/bootstrap-star-rating/js/star-rating.min.js"></script>
+  <script src="/assets/burgout/vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.js"></script>
+
+  <!-- Theme Base, Components and Settings -->
+  <script src="/assets/burgout/js/theme.js"></script>
+
+  <!-- Current Page Vendor and Views -->
+
+
+  <!-- Demo -->
+  <script src="/assets/burgout/js/burgout.js"></script>
+
+  <!-- Theme Initialization Files -->
+  <script src="/assets/burgout/js/theme.init.js"></script>
+
+  <!-- Examples -->
+  <script src="/assets/burgout/js/examples/examples.gallery.js"></script>
+	{% endblock %}
+
+	{%- for link in web_include_js %}
+	<script type="text/javascript" src="{{ link | abs_url }}"></script>
+	{%- endfor -%}
+
+	{%- block script %}{%- endblock %}
+	<!-- csrf_token -->
+	{%- block body_include %}{{ body_include or "" }}{% endblock -%}
+</body>
+</html>

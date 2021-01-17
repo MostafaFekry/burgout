@@ -1,0 +1,104 @@
+{
+ "creation": "2020-12-29 14:24:52.429284",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "language_option_section_break",
+  "enable_multilanguage_support",
+  "column_break_01",
+  "display_language_picker_in_top_bar",
+  "section_02",
+  "burgout_menu_item_group",
+  "footer_section_section",
+  "copyright_year"
+ ],
+ "fields": [
+  {
+   "fieldname": "language_option_section_break",
+   "fieldtype": "Section Break",
+   "label": "Language Option"
+  },
+  {
+   "default": "0",
+   "fieldname": "enable_multilanguage_support",
+   "fieldtype": "Check",
+   "label": "Enable Multi-language Support"
+  },
+  {
+   "fieldname": "column_break_01",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "display_language_picker_in_top_bar",
+   "fieldtype": "Check",
+   "label": "Display Language Picker in Top Bar"
+  },
+  {
+   "fieldname": "section_02",
+   "fieldtype": "Section Break",
+   "label": "Top Bar"
+  },
+  {
+   "description": "Select group of Burgout Menu to display item group in top bar menu, Must be Group.",
+   "fieldname": "burgout_menu_item_group",
+   "fieldtype": "Link",
+   "label": "Burgout Menu Item Group",
+   "options": "Item Group"
+  },
+  {
+   "fieldname": "footer_section_section",
+   "fieldtype": "Section Break",
+   "label": "Footer Section"
+  },
+  {
+   "default": "2020",
+   "fieldname": "copyright_year",
+   "fieldtype": "Int",
+   "label": "Copyright Year"
+  }
+ ],
+ "issingle": 1,
+ "modified": "2020-12-29 14:24:52.429284",
+ "modified_by": "Administrator",
+ "module": "Burgout Website",
+ "name": "Burgout Website Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Administrator",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Website Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

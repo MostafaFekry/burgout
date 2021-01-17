@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!-- Built on Burgout. https://burgouteg.com/ -->
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+	<meta name="generator" content="frappe">
+  <meta name="theme-color" content="#00003B">
+
+	{% block meta_block %}
+		{% include "templates/includes/meta_block.html" %}
+	{% endblock %}
+
+	<title>{% block title %} {{ title | striptags }} {% endblock %}</title>
+
+	{% block favicon %}
+  <!-- Favicon -->
+  <link rel="shortcut icon" href='{{ (favicon or "/assets/burgout/img/burgouticon.png") | abs_url }}' type="image/x-icon">
+	<link rel="apple-touch-icon" href='{{ (favicon or "/assets/burgout/img/burgouticon.png") | abs_url }}'>
+	{% endblock %}
+
+	<link rel="canonical" href="{{ canonical }}">
+
+	{%- block head -%}
+		{% if head_html is defined -%}
+		{{ head_html or "" }}
+		{%- endif %}
+
+		{% if theme.theme_url %}
+		<link type="text/css" rel="stylesheet" href="{{ theme.theme_url }}">
+		{% else %}
+		<link type="text/css" rel="stylesheet" href="/assets/css/frappe-web-b4.css">
+
+		{%- for link in web_include_css %}
+		<link type="text/css" rel="stylesheet" href="{{ link|abs_url }}">
+		{%- endfor -%}
+		{% endif %}
+	{%- endblock -%}
+
+	{%- block head_include %}
+		{{ head_include or "" }}
+	{% endblock -%}
+
+	{%- block style %}{%- endblock -%}
+
+  <!-- Vendor CSS -->
+  <link rel="stylesheet" href="/assets/burgout/vendor/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/animate/animate.compat.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/simple-line-icons/css/simple-line-icons.min.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/owl.carousel/assets/owl.carousel.min.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/owl.carousel/assets/owl.theme.default.min.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/magnific-popup/magnific-popup.min.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/bootstrap-star-rating/css/star-rating.min.css">
+  <link rel="stylesheet" href="/assets/burgout/vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.css">
+
+  <!-- Theme CSS -->
+  <link rel="stylesheet" href="/assets/burgout/css/theme.css">
+  <link rel="stylesheet" href="/assets/burgout/css/theme-elements.css">
+  <link rel="stylesheet" href="/assets/burgout/css/theme-blog.css">
+  <link rel="stylesheet" href="/assets/burgout/css/theme-shop.css">
+
+
+  <!-- Demo CSS -->
+  <link rel="stylesheet" href="/assets/burgout/css/burgout-custom.css">
+  <!-- Skin CSS -->
+  <link rel="stylesheet" href="/assets/burgout/css/skins/skin-burgout.css">
+
+  <!-- Head Libs -->
+  <script src="/assets/burgout/vendor/modernizr/modernizr.min.js"></script>
+
+	<script>
+		window.frappe = {};
+		frappe.ready_events = [];
+		frappe.ready = function(fn) {
+			frappe.ready_events.push(fn);
+		}
+		window.dev_server = {{ dev_server }};
+		window.socketio_port = {{ (frappe.socketio_port or 'null') }};
+    </script>
+</head>
+<body frappe-session-status="{{ 'logged-in' if frappe.session.user != 'Guest' else 'logged-out'}}" data-path="{{ path | e }}" {%- if template and template.endswith('.md') %} frappe-content-type="markdown" {% endif -%} data-target="#header" data-spy="scroll" data-offset="100">
+	<div class="body coming-soon">
+		<header id="header" class="header-transparent bg-color-secondary header-effect-shrink" data-plugin-options="{'stickyEnabled': true, 'stickyEffect': 'shrink', 'stickyEnableOnBoxed': true, 'stickyEnableOnMobile': true, 'stickyChangeLogo': false, 'stickyStartAt': 1, 'stickyHeaderContainerHeight': 70}">
+			<div class="header-body border-0 header-border-bottom bg-color-secondary box-shadow-none">
+				<div class="header-container container py-2">
+					<div class="header-row">
+						<div class="header-column">
+							<div class="header-row">
+								<p class="mb-0 text-color-light"><strong>Get in touch!</strong> (010) 3346-4461</span><span class="d-none d-sm-inline-block pl-1"> | <a href="mailto:info@burgouteg.com?subject=feedback" class="text-color-light text-color-hover-primary">info@burgouteg.com</a></span></p>
+							</div>
+						</div>
+						<div class="header-column justify-content-end">
+							<div class="header-row">
+								<ul class="header-social-icons social-icons mr-2">
+									<li class="social-icons-facebook"><a href="https://www.facebook.com/burgout" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+									<li class="social-icons-instagram"><a href="https://www.instagram.com/burgouteg/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a></li>
+									<li class="social-icons-linkedin"><a href="https://www.tiktok.com/@burgout" target="_blank" title="Tiktok"><i class="fab fa-tiktok"></i></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</header>
+
+
+
+		<div role="main" class="main mt-5">
+			<div class="container">
+				<div class="row mt-5">
+					<div class="col text-center mt-5">
+						<div class="logo mt-5">
+								<a href="{{ url_prefix }}{{ home_page or "/" }}">
+									{{ """<img alt='Burgout' width='160' height='160' src='/assets/burgout/img/burgout120.png'>""" or (frappe.get_hooks("brand_html") or [_("Home")])[0] }}
+								</a>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<hr class="solid my-5">
+					</div>
+				</div>
+				<div class="row">
+					<div class="col text-center">
+						<h2 class="text-color-primary font-weight-bold text-9 negative-ls-05 line-height-2 mb-0 appear-animation" data-appear-animation="maskUp" data-appear-animation-delay="600">Our Website is Coming Soon</h2>
+						<p class="font-weight-semibold text-4-5 line-height-6 mb-4 appear-animation" data-appear-animation="fadeInUpShorter" data-appear-animation-delay="800">To check our menu <a href="/assets/burgout/img/Burgout-Menu.pdf" target="_blank">click here</a>. </p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col">
+						<hr class="solid my-5">
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<section class="section bg-transparent border-0 mb-0 section-with-shape-divider ">
+			<div id="reviews" class="container position-relative pb-5 mb-5">
+
+			</div>
+			<div class="spacer pt-5 pb-4"></div>
+			<div class="shape-divider shape-divider-bottom" style="height: 215px;">
+				<svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0 0 1920 215" preserveAspectRatio="xMinYMin">
+					<path fill="#00003B" d="M-17,20c4.09,0.79,9.94,1.87,17,3c14.01,2.23,24.68,3.35,31,4c25.44,2.62,38.16,3.92,52,5
+						c124.22,9.65,185,12,185,12c68.3,2.64,120.49,4.65,191,2c22.4-0.84,21.56-1.21,158-11c128.51-9.22,140.25-9.68,153-10
+						c22.7-0.57,91-1.79,179,6c80.95,7.16,140.16,18.54,204,31c93.98,18.34,96.08,23.21,217,50c124.45,27.57,213.36,42.61,276,52
+						c77.73,11.66,123.89,15.95,169,18c51.59,2.34,94.89,1.42,126,0c0,16.35,0,32.69,0,49.04c-651.33,0-1302.67,0-1954,0
+						C-14.33,160.69-15.67,90.35-17,20z"/>
+				</svg>
+			</div>
+		</section>
+
+		<footer id="footer" class="bg-primary border-0 mt-0">
+			<div class="footer-copyright bg-transparent">
+				<div class="container py-2">
+					<hr class="bg-secondary opacity-1 m-0">
+					<div class="row">
+						<div class="col text-center py-4">
+							<p class="text-color-light mb-0">Burgout © Copyright 2020. All Rights Reserved.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+	</div>
+
+
+
+
+
+	{% block base_scripts %}
+	<!-- js should be loaded in body! -->
+	<script type="text/javascript" src="/assets/frappe/js/lib/jquery/jquery.min.js"></script>
+	<script type="text/javascript" src="/assets/js/frappe-web.min.js"></script>
+	<script type="text/javascript" src="/assets/js/bootstrap-4-web.min.js"></script>
+	<!-- Vendor -->
+	<script src="/assets/burgout/vendor/jquery.appear/jquery.appear.min.js"></script>
+	<script src="/assets/burgout/vendor/jquery.easing/jquery.easing.min.js"></script>
+	<script src="/assets/burgout/vendor/jquery.cookie/jquery.cookie.min.js"></script>
+	<script src="/assets/burgout/vendor/popper/umd/popper.min.js"></script>
+	<script src="/assets/burgout/vendor/common/common.min.js"></script>
+	<script src="/assets/burgout/vendor/jquery.validation/jquery.validate.min.js"></script>
+	<script src="/assets/burgout/vendor/jquery.easy-pie-chart/jquery.easypiechart.min.js"></script>
+	<script src="/assets/burgout/vendor/jquery.gmap/jquery.gmap.min.js"></script>
+	<script src="/assets/burgout/vendor/jquery.lazyload/jquery.lazyload.min.js"></script>
+	<script src="/assets/burgout/vendor/isotope/jquery.isotope.min.js"></script>
+	<script src="/assets/burgout/vendor/owl.carousel/owl.carousel.min.js"></script>
+	<script src="/assets/burgout/vendor/magnific-popup/jquery.magnific-popup.min.js"></script>
+	<script src="/assets/burgout/vendor/vide/jquery.vide.min.js"></script>
+	<script src="/assets/burgout/vendor/vivus/vivus.min.js"></script>
+	<script src="/assets/burgout/vendor/bootstrap-star-rating/js/star-rating.min.js"></script>
+	<script src="/assets/burgout/vendor/bootstrap-star-rating/themes/krajee-fas/theme.min.js"></script>
+
+	<!-- Theme Base, Components and Settings -->
+	<script src="/assets/burgout/js/theme.js"></script>
+
+	<!-- Current Page Vendor and Views -->
+
+
+	<!-- Demo -->
+	<script src="/assets/burgout/js/burgout.js"></script>
+
+	<!-- Theme Initialization Files -->
+	<script src="/assets/burgout/js/theme.init.js"></script>
+
+	<!-- Examples -->
+	<script src="/assets/burgout/js/examples/examples.gallery.js"></script>
+	{% endblock %}
+
+	{%- for link in web_include_js %}
+	<script type="text/javascript" src="{{ link | abs_url }}"></script>
+	{%- endfor -%}
+
+	{%- block script %}{%- endblock %}
+	<!-- csrf_token -->
+	{%- block body_include %}{{ body_include or "" }}{% endblock -%}
+	</body>
+	</html>

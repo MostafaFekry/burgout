@@ -1,0 +1,49 @@
+{% macro render_item(item, submenu=False, parent=False,rightposition=false) %}
+{% if item.child_items %}
+
+{% if parent %}
+<li class="nav-item dropdown {{ 'ml-lg-auto no-line-effect' if rightposition else '' }}"><a class="nav-link dropdown-item dropdown-toggle{% if (item.url or '')|abs_url == '/'+path %} active{% endif %}" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="#" {{ item.target or ''}}>{{ _(item.label) }}</a>
+	<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+		{%- for child in item.child_items -%}
+			{{ render_item(child, True) }}
+		{%- endfor -%}
+	</ul>
+</li>
+{% else %}
+<li class="dropdown {% if submenu %} dropdown-submenu {% endif %}">
+	<a class="dropdown-item {% if (item.url or '')|abs_url == '/'+path %} active{% endif %}" href="#">{{ _(item.label) }}</a>
+	<ul class="dropdown-menu">
+		{%- for child in item.child_items -%}
+			{{ render_item(child, True) }}
+		{%- endfor -%}
+	</ul>
+</li>
+{% endif %}
+
+{% else %}
+
+{% if parent %}
+<li class="nav-item {{ 'ml-lg-auto no-line-effect' if rightposition else '' }}"><a class="nav-link {% if (item.url or '')|abs_url == '/'+path %} active{% endif %}" href="{{ (item.url or '')|abs_url }}" {{ item.target or ''}}>{{ _(item.label) }}</a></li>
+{% else %}
+<li><a class="dropdown-item" href="{{ (item.url or '') | abs_url }}" {{ item.target or '' }}>{{ _(item.label) }}</a></li>
+{% endif %}
+
+{% endif %}
+{% endmacro %}
+<nav class="navbar collapse w-100">
+	<ul class="navbar-nav flex-column flex-lg-row w-100" id="mainNav">
+		{% if top_bar_items -%}
+			{%- for item in top_bar_items -%}
+				{% if not item.parent_label and not item.right -%}
+					{{ render_item(item, parent=True) }}
+				{%- endif -%}
+			{%- endfor %}
+			{%- for item in top_bar_items -%}
+				{% if not item.parent_label and item.right -%}
+					{{ render_item(item, parent=True,rightposition=True) }}
+				{%- endif -%}
+			{%- endfor %}
+		{%- endif %}
+		{% include "templates/includes/navbar/navbar_login.html" %}
+	</ul>
+</nav>
